@@ -5,6 +5,8 @@
 	{
 		if(ctype_digit($_REQUEST['id']))
 		{
+			session_start();
+			$currentDate = $_SESSION['datereserved'];
 			$id = $_REQUEST['id'];
 			$page_title = "Venue # $id";
 			include_once('../../includes/header_navbar.php');
@@ -14,14 +16,13 @@
 				FROM venuedetails vd
 				INNER JOIN events e ON e.eventNo = vd.eventNo 
 				INNER JOIN venues v ON v.venueID = vd.venueID 
-				WHERE vd.venueID = $id";
+				WHERE vd.venueID = '$id' AND vd.reservationDate = '$currentDate'";
 
 			$result_details = $con->query($sql_details);
 
 			# Insert VenueDetails Data
 			if(isset($_POST['add']))
 			{
-				session_start();
 				#INSERT Details
 				$eventNo = $_SESSION['eventno'];
 				$remarks = mysqli_real_escape_string($con, $_POST['remarks']);
@@ -35,34 +36,27 @@
 
 				header("location: equip.php");
 			}
-			else if(isset($_POST['skip']))
-			{
-				session_start();
-				$eventNo = $_SESSION['eventno'];
-				$sql_skip = "INSERT INTO venuedetails VALUES ('', '$eventNo', NULL, 
-					'N/A', NULL, NULL, NULL, 'N/A')";
-			}
 
 			
 		}
 		else
 		{
-			header('choosevenue.php');
+			header('venue.php');
 		}
 	}
 	else
 	{
-		header('location: choosevenue.php');
+		header('location: venue.php');
 	}
 ?>
 
 	<form method="POST" class="form-horizontal">
 		<div class="col-lg-12">
-			<div class="col-lg-push-1 col-lg-7">
+			<div class="col-lg-push-1 col-lg-6">
 				<h2 class="text-center">Reservation Dates</h2>
 				<table id="tblDetails" class="table table-hover">
 					<thead>
-						<th>Ref No</th>
+						
 						<th>Event Name</th>
 						<th>Venue</th>
 						<th>Reservation Date</th>
@@ -71,7 +65,7 @@
 					<?php
 						while($row = mysqli_fetch_array($result_details))
 							{
-							$ref = $row['refNo'];
+							//$ref = $row['refNo'];
 							$event = $row['eventName'];
 							$venue = $row['venueName'];
 							$date = $row['reservationDate'];
@@ -79,7 +73,7 @@
 
 							echo "
 								<tr>
-									<td>$ref</td>
+									
 									<td>$event</td>
 									<td>$venue</td>
 									<td>$date</td>
@@ -91,7 +85,7 @@
 				</table>
 			</div>
 
-			<div class="col-lg-push-1 col-lg-5">
+			<div class="col-lg-push-1 col-lg-6">
 				<h2 class="text-center">Reservation Details</h2>
 				<div class="form-group">
 					<label class="control-label col-lg-4">Remarks</label>
@@ -113,7 +107,8 @@
 				<div class="form-group">	
 					<label class="control-label col-lg-4">Time Borrowed</label>
 					<div class="col-lg-7">
-						<input name="venueborrow" type="time" class="form-control" required />
+						<input name="venueborrow" type="time" class="form-control" required 
+						value='00:00:00'/>
 					</div>
 				</div>
 
@@ -123,9 +118,9 @@
 					<button name="add" type="submit" class="btn btn-success">
 						Add
 					</button>
-					<button name="skip" type="submit" class="btn btn-default">
-						Skip
-					</button>
+					<a href="venue.php" class="btn btn-default">
+						Back
+					</a>
 				</div>
 			</div>
 			<script>

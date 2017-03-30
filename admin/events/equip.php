@@ -53,7 +53,7 @@
     }
 
     #Display Venues
-    $result_venues = $con->query($sql_equipments);
+    $result_equip = $con->query($sql_equipments);
 
     # Display Campuses
 
@@ -138,9 +138,9 @@
 
 	<div class="col-lg-9">
 		<?php
-			if (mysqli_num_rows($result_venues) > 0)
+			if (mysqli_num_rows($result_equip) > 0)
 			{
-				while ($row = mysqli_fetch_array($result_venues))
+				while ($row = mysqli_fetch_array($result_equip))
 				{
 					$equipid = $row['equipID'];
 					$equipname = $row['equipName'];

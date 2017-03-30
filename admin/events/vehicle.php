@@ -6,7 +6,7 @@
 	if (isset($_POST['search']))
     {
     	$keyword = mysqli_real_escape_string($con, $_POST['keyword']);
-    	header('location: support.php?s=' . $keyword);
+    	header('location: vehicle.php?s=' . $keyword);
     }
 
     # Get Campus
@@ -24,7 +24,7 @@
 		}
 		else
 		{
-			header('location: support.php');
+			header('location: vehicle.php');
 		}
     }
 
@@ -78,11 +78,7 @@
 		$sql_update = "UPDATE manpowerdetails SET status = 'Pending'
 			WHERE eventNo = '$eventNo'";
 		$con -> query($sql_update) or die(mysqli_error($con));
-		header('location: index.php');
-
-		# REMEMBER to remove this if vehicle GOES ON JAZZZZZZ
-		session_unset();
-		session_destroy();
+		header('location: vehicle.php');
 	}
 	else if(isset($_POST['skip']))
 	{
@@ -92,11 +88,7 @@
 		$sql_skip = "INSERT INTO manpowerdetails VALUES ('', $eventNo, NULL, 
 			NULL, NULL, 'N/A', 'N/A')";
 		$con -> query($sql_skip) or die(mysqli_error($con));
-		header('location: index.php');
-
-		# REMEMBER to remove this if vehicle GOES ON JAZZZZZZ
-		session_unset();
-		session_destroy();
+		header('location: vehicle.php');
 	}
 ?>
 
@@ -112,7 +104,7 @@
 		</div>
 		<br/>
 		<div class="list-group">
-			<a href='support.php' class='list-group-item'>
+			<a href='vehicle.php' class='list-group-item'>
 				<span class='badge'><?php //echo $data; ?></span>
 				All Categories
 			</a>
@@ -124,7 +116,7 @@
 					$total = $row['totalCount'];
 
 					echo "
-						<a href='support.php?c=$cid' class='list-group-item'>
+						<a href='vehicle.php?c=$cid' class='list-group-item'>
 							<span class='badge'>$total</span>
 							$catname
 						</a>
@@ -154,7 +146,7 @@
 					$desc = $row['serviceDescription'];
 
 					echo "
-						<a href='addsupport.php?id=$sid' class='venues'>
+						<a href='addvehicle.php?id=$sid' class='venues'>
 							<div class='col-lg-4'>
 								<div class='thumbnail'>
 									
@@ -165,7 +157,7 @@
 										<small>$catname</small><br/>
 										$desc <br />
 										<hr/>
-										<a href='addsupport.php?id=$sid' class='btn btn-success 
+										<a href='addvehicle.php?id=$sid' class='btn btn-success 
 										btn-block'>
 											<i class='fa fa-calendar'></i> View Schedule
 										</a>

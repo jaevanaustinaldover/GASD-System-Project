@@ -45,11 +45,14 @@
 		$sql_add_events = "INSERT INTO events VALUES ('', 1, '$bid', '$eventname',
 			'$organization', '$c_person', '$c_number', '$a_type', '$no_participants',
 			'$datereserved', 'Pending', NOW(), NULL)";
+		
+		# TRYING to get SESSION datereserved
+		$_SESSION['datereserved'] = $datereserved;
 	
 		$con -> query($sql_add_events) or die(mysqli_error($con));
 
-		#getEventNo
-		$sql_eventID = "SELECT eventNo FROM events WHERE
+		#getEventNo,datereserved
+		$sql_eventID = "SELECT eventNo, dateReserved FROM events WHERE
 			dateReserved = '$datereserved' AND eventname = '$eventname'";
 		$result_eventNo = $con->query($sql_eventID);
 

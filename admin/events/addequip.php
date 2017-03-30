@@ -4,8 +4,13 @@
 	{
 		if(ctype_digit($_REQUEST['id']))
 		{
+			# Sessions
+			session_start();
+			$currentDate = $_SESSION['datereserved'];
+
+			#
 			$id = $_REQUEST['id'];
-			$page_title = "Equipment # $id";
+			$page_title = "Equipments # $id";
 			include_once('../../includes/header_navbar.php');
 			# Get Current Event's Reservation Date
 			//$sql_date = "SELECT dateReserved from events WHERE eventNo=$eventNo";
@@ -24,18 +29,17 @@
 
 			# View Venue Reservations
 
-			$sql_details = "SELECT ed.refNo, ev.eventName, ev.dateReserved,
+			$sql_details = "SELECT ed.refNo, ev.eventName, ed.dateReserved,
 			e.equipName, ed.quantity, ed.timeBorrowed FROM equipmentdetails ed 
 				INNER JOIN events ev ON ev.eventNo = ed.eventNo 
 				INNER JOIN equipments e ON ed.equipID = e.equipID 
-				WHERE e.equipID = $id";
+				WHERE e.equipID = '$id' AND ed.dateReserved = '$currentDate'";
 
-			$result_details = $con->query($sql_details);
+			$result_details = $con->query($sql_details) or die(mysqli_error($con));
 
 			# Insert VenueDetails Data
 			if(isset($_POST['add']))
 			{
-				session_start();
 				$eventNo = $_SESSION['eventno'];
 				#INSERT Details
 				$quantity = mysqli_real_escape_string($con, $_POST['quantity']);
@@ -63,11 +67,11 @@
 
 <form method="POST" class="form-horizontal">
 		<div class="col-lg-12">
-			<div class="col-lg-push-1 col-lg-7">
+			<div class="col-lg-push-1 col-lg-6">
 				<h2 class="text-center">Reservation List</h2>
 				<table id="tblDetails" class="table table-hover">
 					<thead>
-						<th>Ref No</th>
+						
 						<th>Event Name</th>
 						<th>Equipment</th>
 						<th>Quantity</th>
@@ -77,7 +81,8 @@
 					<?php
 						while($row = mysqli_fetch_array($result_details))
 							{
-							$ref = $row['refNo'];
+								#removed all ref from add details to adjust table
+							//$ref = $row['refNo'];
 							$event = $row['eventName'];
 							$equip = $row['equipName'];
 							$qty = $row['quantity'];
@@ -86,7 +91,7 @@
 
 							echo "
 								<tr>
-									<td>$ref</td>
+									
 									<td>$event</td>
 									<td>$equip</td>
 									<td>$qty</td>
@@ -99,7 +104,7 @@
 				</table>
 			</div>
 
-			<div class="col-lg-push-2 col-lg-5">
+			<div class="col-lg-push-2 col-lg-6">
 				<h2 class="text-center">Equipment Reservation Details</h2>
 				<hr>
 				<div class="form-group">
