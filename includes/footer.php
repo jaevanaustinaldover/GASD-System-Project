@@ -11,5 +11,7 @@
     </div>
     <script type="text/javascript" src='<?php echo app_path ?>js/bootstrap.min.js'></script>
     <script type="text/javascript" src='<?php echo app_path ?>js/jasny-bootstrap.min.js'></script>
+    <script type="text/javascript" src='<?php echo app_path ?>js/jquery.min.js'></script>
+    <script type="text/javascript" src='<?php echo app_path ?>js/jquery-3.2.0.min.js'></script>
 </body>
 </html>
