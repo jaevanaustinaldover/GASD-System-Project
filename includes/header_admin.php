@@ -20,11 +20,13 @@
 		<link href="<?php echo app_path ?>css/bootstrap.css" rel="stylesheet" />
 	    <link href="<?php echo app_path ?>css/custom.css" rel="stylesheet" />
 	    <link href="<?php echo app_path ?>css/font-awesome.min.css" rel="stylesheet" />
+	    <link href="<?php echo app_path ?>css/calendar.css" rel="stylesheet" />
 	    <link href="<?php echo app_path ?>css/jasny-bootstrap.min.css" rel="stylesheet" />
 	    <link href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet" />
 	    <script type="text/javascript" src='<?php echo app_path ?>js/jquery-3.2.0.min.js'></script>
 	    <script type="text/javascript" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 	    <script type="text/javascript" src='<?php echo app_path ?>ckeditor/ckeditor.js'></script>
+	    <script type="text/javascript" src='<?php echo app_path ?>js/jquery.min.js'></script>
 	</head>
 
 	<body>
