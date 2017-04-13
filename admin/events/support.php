@@ -1,7 +1,7 @@
 <?php
 
 	$page_title = "Choose Manpower Services";
-	include_once('../../includes/header_navbar.php');
+	include_once('../../includes/header_dashboard.php');
 
 	if (isset($_POST['search']))
     {
@@ -195,5 +195,5 @@
 </form>
 
 <?php
-	include_once('../../includes/footer.php');
+	include_once('../../includes/footer_dashboard.php');
 ?>

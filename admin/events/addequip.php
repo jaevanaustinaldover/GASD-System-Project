@@ -11,7 +11,7 @@
 			#
 			$id = $_REQUEST['id'];
 			$page_title = "Equipments # $id";
-			include_once('../../includes/header_navbar.php');
+			include_once('../../includes/header_dashboard.php');
 			# Get Current Event's Reservation Date
 			//$sql_date = "SELECT dateReserved from events WHERE eventNo=$eventNo";
 			//$result_date = $con->query($sql_date);
@@ -146,3 +146,7 @@
 			</div>
 		</div>
 	</form>
+
+<?php
+	include_once('../../includes/footer_dashboard.php');
+?>

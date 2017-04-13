@@ -1,0 +1,21 @@
+#events-image{
+	height: 50%;
+	width: 50%;
+	background-image: url('../../images/reference/events.jpg');
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg { 
+    /* The image used */
+    background-image: url('../../images/reference/events.jpg');
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

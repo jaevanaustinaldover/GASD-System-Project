@@ -22,6 +22,7 @@
 	    <link href="<?php echo app_path ?>css/custom.css" rel="stylesheet" />
 	    <link href="<?php echo app_path ?>css/font-awesome.min.css" rel="stylesheet" />
 	    <link href="<?php echo app_path ?>css/jasny-bootstrap.min.css" rel="stylesheet" />
+	    <link href="<?php echo app_path ?>admin/events/indeximage.css" rel="stylesheet" />
 	    <link rel="stylesheet" type="text/css" href="<?php echo app_path ?>css/simple-sidebar.css">
 	    <link href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet" />
 	    <script type="text/javascript" src='<?php echo app_path ?>js/jquery-3.2.0.min.js'></script>
@@ -30,10 +31,50 @@
 	</head>
 
 	<body>
-		<div class="container-fluid">
-			<div class="navbar navbar-default navbar-fixed-top">
-        		<div class="container">
-            		<div class="navbar-header">
+		<div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        GASD System
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo app_path ?>admin/index.php">Dashboard</a>
+                </li>
+                <li>
+                    <a href="Order/product.php">Events</a>
+                </li>
+                <li>
+                    <a href="Purchase/view.php">Venues</a>
+                </li>
+                <li>
+                    <a href="#">Equipments</a>
+                </li>
+                <li>
+                    <a href="#">Supports</a>
+                </li>
+                <li>
+                    <a href="#">Vehicles</a>
+                </li>
+                <li>
+                    <a href="#">Reports</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+          <div class="navbar navbar-default">
+            <div class="container-fluid">
+              <ul class="nav navbar-nav">
+                <li>
+                  <a href="#menu-toggle" class="fa fa-bars fa-lg" id="menu-toggle"></a>
+                </li>
+              </ul>
+              <div class="navbar-header">
                 		<a id="home" href="<?php echo app_path ?>admin/index.php" runat="server" class="navbar-brand">GASD System</a>
 		                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar-main">
                     	<span class="icon-bar"></span>
@@ -47,30 +88,34 @@
 		                    <li class="dropdown">
 		                        <a class="dropdown-toggle" data-toggle="dropdown" id="about" href="">Events <span class="caret"></span></a>
 		                        <ul class="dropdown-menu">
-		                            <li><a id="A2" runat="server" href="<?php echo app_path ?>admin/events/add2.php">Add Event</a></li>
+		                            <li><a id="A2" runat="server" href="<?php echo app_path ?>admin/events/add.php">Add Event</a></li>
 		                            <li><a id="A3" runat="server" href="<?php echo app_path ?>admin/events/index.php">View Events</a></li>
 		                        </ul>
 		                    </li>
 		                    <li class="dropdown">
-		                        <a class="dropdown-toggle" data-toggle="dropdown" id="products" href="#">Products <span class="caret"></span></a>
+		                        <a class="dropdown-toggle" data-toggle="dropdown" id="products" href="#">Venues <span class="caret"></span></a>
 		                        <ul class="dropdown-menu">
-		                            <li><a id="A4" runat="server" href="~/Products.aspx">View All Products</a></li>
-		                            <li class="divider"></li>
 		                            <li><a id="A5" runat="server" href="~/Products.aspx?sort=name">Sort by Name</a></li>
 		                            <li><a id="A6" runat="server" href="~/Products.aspx?sort=price">Sort by Price</a></li>
 		                        </ul>
 		                    </li>
-		                    <li><a id="A7" runat="server" href="~/Gallery.aspx">Gallery</a></li>
-		                    <li><a id="A8" runat="server" href="~/Blog.aspx">Blog</a></li>
-		                    <li><a id="A9" runat="server" href="~/Contact.aspx">Contact Us</a></li>
+		                    <li class="dropdown">
+		                        <a class="dropdown-toggle" data-toggle="dropdown" id="products" href="#">Equipments <span class="caret"></span></a>
+		                        <ul class="dropdown-menu">
+		                            <li><a id="A5" runat="server" href="~/Products.aspx?sort=name">Sort by Name</a></li>
+		                            <li><a id="A6" runat="server" href="~/Products.aspx?sort=price">Sort by Price</a></li>
+		                        </ul>
+		                    </li>
+		                    <li class="dropdown">
+		                        <a class="dropdown-toggle" data-toggle="dropdown" id="products" href="#">Supports <span class="caret"></span></a>
+		                        <ul class="dropdown-menu">
+		                            <li><a id="A5" runat="server" href="~/Products.aspx?sort=name">Sort by Name</a></li>
+		                            <li><a id="A6" runat="server" href="~/Products.aspx?sort=price">Sort by Price</a></li>
+		                        </ul>
+		                    </li>
+		                    <li><a id="A7" runat="server" href="~/Gallery.aspx">Reports</a></li>
 		                </ul>
 		                <ul class="nav navbar-nav pull-right">
-		                    <li id="cart" runat="server">
-		                        <a href="#" data-toggle="modal" data-target="#myCart">
-		                            <span class="badge">
-		                                <asp:Literal ID="ltTotal_Cart" runat="server" /></span> Cart 
-		                        </a>
-		                    </li>
 		                    <li id="user" runat="server" class="dropdown" visible="true">
 		                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 		                            <asp:Literal ID="ltUser" runat="server" Text="John Doe" />
@@ -84,20 +129,13 @@
 		                            <li><a id="A13" runat="server" href="~/Account/Logout.aspx">Logout</a></li>
 		                        </ul>
 		                    </li>
-		                    <li><a id="login" runat="server" href="~/Account/Login.aspx">Login</a></li>
-		                    <li><a id="register" runat="server" href="~/Account/Register.aspx">Register</a></li>
 		                </ul>
 		            </div>
-            	</div>
             </div>
-		    <div class="col-lg-10 col-md-10 col-sm-9">
-		        <div class="clearfix">
-		           	<div class="page-header">
-		               	<div class="row">
-		                   	<div class="col-lg-push-6 col-lg-6">
-		                   		<hr>
-		                       	<h1><?php echo $page_title; ?></h1>
-		                   	</div>
-		                </div>
-		            </div>
-		        	<div class="col-lg-12">
+          </div>
+          <!-- /#End of Nav Bar -->
+
+          <!-- Content Files Header Side-->
+          	<div class="col-lg-12">
+
+              <!-- Content Files Header Side-->

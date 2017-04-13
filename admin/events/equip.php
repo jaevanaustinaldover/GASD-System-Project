@@ -1,6 +1,6 @@
 <?php
 	$page_title = "Choose Equipment/s";
-    include_once('../../includes/header_navbar.php');
+    include_once('../../includes/header_dashboard.php');
 
     # Search Bar Configuration
     if (isset($_POST['search']))
@@ -143,32 +143,32 @@
 				while ($row = mysqli_fetch_array($result_equip))
 				{
 					$equipid = $row['equipID'];
-					$equipname = $row['equipName'];
-					$catname = $row['categoryName'];
-					$desc = $row['equipDescription'];
-					$avail = $row['equipAvailable'];
+                    $equipname = $row['equipName'];
+                    $catname = $row['categoryName'];
+                    $desc = $row['equipDescription'];
+                    $avail = $row['equipAvailable'];
 
-					echo "
-						<a href='addequip.php?id=$equipid' class='venues'>
-							<div class='col-lg-4'>
-								<div class='thumbnail'>
-									
+                    echo "
+                      <a href='addequip.php?id=$equipid' class='venues'>
+                        <div class='col-lg-4'>
+                          <div class='thumbnail'>
+                            
 
 
-									<div class='caption'>
-										<h4><strong>$equipname</strong></h4>
-										<small>$catname</small><br/>
-										$desc <br />
-										Quantity: $avail
-										<hr/>
-										<a href='addequip.php?id=$equipid' class='btn btn-success 
-										btn-block'>
-											<i class='fa fa-calendar'></i> View Schedule
-										</a>
-									</div>
-								</div>
-							</div>
-						</a>
+                            <div class='caption'>
+                              <h4><strong>$equipname</strong></h4>
+                              <small>$catname</small><br/>
+                              $desc <br />
+                              Quantity: $avail
+                              <hr/>
+                              <a href='addequip.php?id=$equipid' class='btn btn-success 
+                              btn-block'>
+                                <i class='fa fa-calendar'></i> View Schedule
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
 					";
 				}
 			}
@@ -191,5 +191,5 @@
 </form>
 
 <?php
-	include_once('../../includes/footer.php');
+	include_once('../../includes/footer_dashboard.php');
 ?>

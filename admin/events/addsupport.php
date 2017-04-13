@@ -10,7 +10,7 @@
 
 			$id = $_REQUEST['id'];
 			$page_title = "Service # $id";
-			include_once('../../includes/header_navbar.php');
+			include_once('../../includes/header_dashboard.php');
 
 			$sql_details = "SELECT md.refNo, ev.eventName, mp.serviceName,
 				md.setupDate, md.setupTime FROM manpowerdetails md
@@ -131,3 +131,6 @@
 			</div>
 		</div>
 	</form>
+<?php
+	include_once('../../includes/footer_dashboard.php');
+?>

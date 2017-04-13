@@ -9,7 +9,7 @@
 			$currentDate = $_SESSION['datereserved'];
 			$id = $_REQUEST['id'];
 			$page_title = "Venue # $id";
-			include_once('../../includes/header_navbar.php');
+			include_once('../../includes/header_dashboard.php');
 			# View Venue Reservations
 			$sql_details = "SELECT vd.refNo, e.eventName, v.venueName, 
 				vd.reservationDate, vd.timeBorrowed 
@@ -130,3 +130,6 @@
 			</script>
 		</div>
 	</form>
+<?php
+	include_once('../../includes/footer_dashboard.php');
+?>
